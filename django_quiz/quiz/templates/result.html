@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% load quiz_tags %}
+
+{% block title %} {{ quiz.title}} {% endblock %}
+{% block description %} {% trans "Exam Results for" %} {{ quiz.title }} {% endblock %}
+
+{% block content %}
+
+{#  {% if previous.answers %}#}
+{##}
+{#  <p class="muted"><small>{% trans "The previous question" %}:</small></p>#}
+{#  <p>{{ previous.previous_question }}</p>#}
+{#  <p>Your answer was#}
+{#	<strong>#}
+{#	  {{ previous.previous_outcome|yesno:"correct,incorrect" }}#}
+{#	</strong>#}
+{#  </p>#}
+{#  {% include 'correct_answer.html' %}#}
+{#  <p><strong>{% trans "Explanation" %}:</strong></p>#}
+{#  <div class="well " style="background-color: #fcf8e3;">#}
+{#    <p>{{ previous.previous_question.explanation }}</p>#}
+{#  </div>#}
+{#  <hr>#}
+{##}
+{#  {% endif %}#}
+
+  {% if max_score %}
+
+  <div>
+	<h2>{% trans "Exam results" %}</h2>
+
+	<p class="lead">
+	  {% trans "Twój socjotyp" %} {{ soctype }} . {% trans "Twój dual" %} {{ dual }}. {% trans "To jest email przypadkowego przyjaciela" %} {{ friend }}
+	</p>
+
+	{% if quiz.pass_mark %}
+	<hr>
+        <p class="lead">{{ sitting.result_message }}</p>
+	<hr>
+
+	{% endif %}
+  <button onclick="location.href='/q/test/take/'" type="button" class="btn btn-large btn-block btn-warning">Powtórzyć</button>
+
+
+  </div>
+
+
+  {% endif %}
+
+
+  <hr>
+
+
+
+
+{% endblock %}
